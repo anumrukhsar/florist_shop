@@ -15,7 +15,7 @@ class FlowerListItem extends StatelessWidget{
       child: Card(
         child: Column(
           children: [
-            Align(alignment:Alignment.topRight,child: IconButton(onPressed:()=> addToWishList(), icon: Icon(flowerItem.isAddedToWishList?Icons.favorite:Icons.favorite_border))),
+            Align(alignment:Alignment.topRight,child: IconButton(onPressed:()=> addToWishList(), icon: Icon(flowerItem.isAddedToWishList?Icons.favorite:Icons.favorite_border,color: Colors.green,))),
             Hero(
               tag: flowerItem.name,
               child: Image.network(
@@ -23,6 +23,11 @@ class FlowerListItem extends StatelessWidget{
                 fit: BoxFit.contain,
                 height: 100,
                 width: 100,
+
+                loadingBuilder: (context,child,loadingProgress){
+                  if(loadingProgress==null) return child;
+                  return CircularProgressIndicator();
+                },
               ),
             ),
             Expanded(child: Center(child: Text(flowerItem.name,textAlign: TextAlign.center,style: GoogleFonts.mukta(textStyle: TextStyle(color: Colors.black,fontSize: 14,)),))),

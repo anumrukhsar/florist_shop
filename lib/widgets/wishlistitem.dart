@@ -22,6 +22,10 @@ class WishListItem extends StatelessWidget {
              fit: BoxFit.contain,
              height: 100,
              width: 100,
+             loadingBuilder: (context,child,loadingProgress){
+               if(loadingProgress==null) return child;
+               return CircularProgressIndicator();
+             },
            ),
          ),),
       Expanded(flex:7,child: ListTile(
